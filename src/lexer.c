@@ -9,6 +9,7 @@ t_lexer		new(const char *input)
 	l.position = 0;
 	l.read_char = &read_char;
 	l.skip_white_spaces = &skip_white_spaces;
+	l.peak_char = &peak_char;
 	l.read_char(&l);
 	return (l);
 }
@@ -23,12 +24,26 @@ void			read_char(t_lexer *lexer)
 	lexer->read_position += 1;
 }
 
+char			peak_char(t_lexer *lexer)
+{
+	if (lexer->read_position <= strlen(lexer->input))
+		return (lexer->input[lexer->read_position]);
+	return ('\0');
+}
+
 t_token		next_token(t_lexer *lexer)
 {
 	t_token tok;
 	lexer->skip_white_spaces(lexer);
-	if (lexer->ch == '=')
-		tok = new_token(g_assign, "=");
+	if (lexer->ch == '=') {
+		if (lexer->peak_char(lexer) == '=') {
+			lexer->read_char(lexer);
+			tok.literal = "==";
+			tok.type = g_eq;
+		}
+		else
+			tok = new_token(g_assign, "=");
+	}
 	else if (lexer->ch == ';')
 		tok = new_token(g_semmicolon, ";");
 	else if (lexer->ch == '(')

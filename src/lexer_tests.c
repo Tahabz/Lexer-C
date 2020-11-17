@@ -5,9 +5,9 @@ int			main(void)
 {
 	int ok = 0;
 	t_token tok;
-	const char *input = "=;(),+{}!/*<>-";
+	const char *input = "==;(),+{}!/*<>==";
 	t_token tests[] = {
-		{g_assign, "="},
+		{g_eq, "=="},
 		{g_semmicolon, ";"},
 		{g_lparen, "("},
 		{g_rparen, ")"},
@@ -20,19 +20,19 @@ int			main(void)
 		{g_asterik, "*"},
 		{g_lt, "<"},
 		{g_gt, ">"},
-		{g_minus, "-"},
+		{g_eq, "=="},
 		{g_eof, ""},
 	};
 	l = new(input);
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 14; i++)
 	{
 		tok = next_token(&l);
 		if (strcmp(tok.literal, tests[i].literal) != 0) {
-			printf("Test [%d] ERROR:\nToken Literal mismatch \nExpected:'%s'\nGot:	'%s'\n", i, tests[i].literal, tok.literal);
+			printf("Test [%d] ERROR: Token Literal mismatch \nExpected:'%s'\nGot\t:'%s'\n\n", i, tests[i].literal, tok.literal);
 			ok = 1;
 		}
 		if (strcmp(tok.type, tests[i].type) != 0) {
-			printf("Test [%d] ERROR:\nToken Type mismatch \nExpected:'%s'\nGot:	'%s'\n", i, tests[i].type, tok.type);
+			printf("Test [%d] ERROR: Token Type mismatch \nExpected:'%s'\nGot\t:'%s'\n\n", i, tests[i].type, tok.type);
 			ok = 1;
 		}
 	}
