@@ -13,7 +13,7 @@ t_lexer		new(const char *input)
 	return (l);
 }
 
-void		read_char(t_lexer *lexer)
+void			read_char(t_lexer *lexer)
 {
 	if (lexer->read_position >= strlen(lexer->input))
 		lexer->ch = '\0';
@@ -69,7 +69,7 @@ t_token		new_token(const char *type, const char *literal)
 	return (tok);
 }
 
-void		skip_white_spaces(t_lexer *lexer)
+void			skip_white_spaces(t_lexer *lexer)
 {
 	while (l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '\r')
 		l.read_char(lexer);
