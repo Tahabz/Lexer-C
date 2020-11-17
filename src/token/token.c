@@ -1,3 +1,12 @@
+const char *keys[]			= {
+	"let",
+	"fn",
+	"true",
+	"false",
+	"if",
+	"else",
+	"return"
+};
 const char *g_illegal		= "ILLEGAL";
 const char *g_eof			= "EOF";
 const char *g_ident			= "IDENT";
@@ -25,12 +34,3 @@ const char *g_else 			= "else";
 const char *g_return 		= "return";
 const char *g_eq 			= "==";
 const char *g_not_eq 		= "!=";
-const char *keys[]			= {
-	"let",
-	"fn",
-	"true",
-	"false",
-	"if",
-	"else",
-	"return"
-};
