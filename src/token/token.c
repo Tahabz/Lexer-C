@@ -1,3 +1,6 @@
+#include "string.h"
+#include "libft.h"
+
 const char *keys[]			= {
 	"let",
 	"fn",
@@ -34,3 +37,35 @@ const char *g_else 			= "else";
 const char *g_return 		= "return";
 const char *g_eq 			= "==";
 const char *g_not_eq 		= "!=";
+
+const char *get_key_type(const char *literal) {
+	if (strcmp(literal, "let") == 0)
+		return g_let;
+	else if (strcmp(literal, "fn") == 0)
+		return g_function;
+	else if (strcmp(literal, "true") == 0)
+		return g_true;
+	else if (strcmp(literal, "false") == 0)
+		return g_false;
+	else if (strcmp(literal, "if") == 0)
+		return g_if;
+	else if (strcmp(literal, "else") == 0)
+		return g_else;
+	return g_return;
+}
+
+const char *lookup_ident(const char *literal)
+{
+	unsigned int	len;
+	int						i;
+
+	i = 0;
+	len = ft_strlen(literal);
+	while (i < len)
+	{
+		if (strcmp(literal, keys[i]) == 0)
+			return get_key_type(literal);
+		i++;
+	}
+	return (literal);
+}

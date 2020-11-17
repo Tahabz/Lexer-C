@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "lexer.h"
+#include "libft.h"
 
 t_lexer		new(const char *input)
 {
@@ -10,8 +11,19 @@ t_lexer		new(const char *input)
 	l.read_char = &read_char;
 	l.skip_white_spaces = &skip_white_spaces;
 	l.peak_char = &peak_char;
+	l.read_identifier = &read_identifier;
 	l.read_char(&l);
 	return (l);
+}
+
+char						*read_identifier(struct s_lexer *lexer)
+{
+	int position;
+
+	position = lexer->position;
+	while (ft_isalpha(lexer->ch))
+		lexer->read_char(lexer);
+	return ft_substr(lexer->input, position, lexer->position);
 }
 
 void			read_char(t_lexer *lexer)
@@ -80,6 +92,14 @@ t_token		next_token(t_lexer *lexer)
 		tok = new_token(g_gt, ">");
 	else if (lexer->ch == '\0')
 		tok = new_token(g_eof, "\0");
+	else
+	{
+		if (ft_isalpha(lexer->ch))
+		{
+			tok.literal = l.read_identifier(lexer);
+			tok.type = lookup_ident(tok.literal);
+		}
+	}
 	l.read_char(lexer);
 	return (tok);
 }

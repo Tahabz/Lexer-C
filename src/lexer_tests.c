@@ -1,11 +1,11 @@
 #include "globals.h"
 #include "lexer.h"
-
+#include "libft.h"
 int			main(void)
 {
 	int ok = 0;
 	t_token tok;
-	const char *input = "==;(),+{}!/*<>==!=";
+	const char *input = "==;(),+{}!/*<>==!=let";
 	t_token tests[] = {
 		{g_eq, "=="},
 		{g_semmicolon, ";"},
@@ -22,10 +22,11 @@ int			main(void)
 		{g_gt, ">"},
 		{g_eq, "=="},
 		{g_not_eq, "!="},
+		{g_let, "let"},
 		{g_eof, ""},
 	};
 	l = new(input);
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 16; i++)
 	{
 		tok = next_token(&l);
 		if (strcmp(tok.literal, tests[i].literal) != 0) {
