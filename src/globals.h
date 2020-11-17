@@ -32,8 +32,7 @@ extern const char	*g_eq;
 extern const char	*g_not_eq;
 extern const char	*keys[];
 typedef struct		s_token {
-	const char *str;
+	const char *type;
 	const char *literal;
 }					t_token;
-extern t_lexer		l;
 #endif

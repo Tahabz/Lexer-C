@@ -10,7 +10,7 @@ const char *keys[]			= {
 const char *g_illegal		= "ILLEGAL";
 const char *g_eof			= "EOF";
 const char *g_ident			= "IDENT";
-const char *g_assign		= "ASSIGN";
+const char *g_assign		= "=";
 const char *g_int			= "INT";
 const char *g_plus			= "+";
 const char *g_comma			= ",";
