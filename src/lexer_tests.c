@@ -5,7 +5,7 @@ int			main(void)
 {
 	int ok = 0;
 	t_token tok;
-	const char *input = "==;(),+{}!/*<>==!=let";
+	const char *input = "==;(),+{}!/*<>==!=let letor";
 	t_token tests[] = {
 		{g_eq, "=="},
 		{g_semmicolon, ";"},
@@ -23,6 +23,7 @@ int			main(void)
 		{g_eq, "=="},
 		{g_not_eq, "!="},
 		{g_let, "let"},
+		{g_ident, "letor"},
 		{g_eof, ""},
 	};
 	l = new(input);

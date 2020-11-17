@@ -23,7 +23,7 @@ char						*read_identifier(struct s_lexer *lexer)
 	position = lexer->position;
 	while (ft_isalpha(lexer->ch))
 		lexer->read_char(lexer);
-	return ft_substr(lexer->input, position, lexer->position);
+	return (ft_substr(lexer->input, position, lexer->position - position));
 }
 
 void			read_char(t_lexer *lexer)
@@ -98,7 +98,10 @@ t_token		next_token(t_lexer *lexer)
 		{
 			tok.literal = l.read_identifier(lexer);
 			tok.type = lookup_ident(tok.literal);
+			return (tok);
 		}
+		else
+			tok = new_token(g_illegal, "");
 	}
 	l.read_char(lexer);
 	return (tok);
