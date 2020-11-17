@@ -5,7 +5,7 @@ int			main(void)
 {
 	int ok = 0;
 	t_token tok;
-	const char *input = "==;(),+{}!/*<>==";
+	const char *input = "==;(),+{}!/*<>==!=";
 	t_token tests[] = {
 		{g_eq, "=="},
 		{g_semmicolon, ";"},
@@ -21,10 +21,11 @@ int			main(void)
 		{g_lt, "<"},
 		{g_gt, ">"},
 		{g_eq, "=="},
+		{g_not_eq, "!="},
 		{g_eof, ""},
 	};
 	l = new(input);
-	for (int i = 0; i < 14; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		tok = next_token(&l);
 		if (strcmp(tok.literal, tests[i].literal) != 0) {

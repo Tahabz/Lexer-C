@@ -61,7 +61,15 @@ t_token		next_token(t_lexer *lexer)
 	else if (lexer->ch == '}')
 		tok = new_token(g_rbrace, "}");
 	else if (lexer->ch == '!')
-		tok = new_token(g_bang, "!");
+	{
+		if (lexer->peak_char(lexer) == '=') {
+			lexer->read_char(lexer);
+			tok.literal = "!=";
+			tok.type = g_not_eq;
+		}
+		else
+			tok = new_token(g_bang, "!");
+	}
 	else if (lexer->ch == '/')
 		tok = new_token(g_slash, "/");
 	else if (lexer->ch == '*')
