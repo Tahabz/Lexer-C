@@ -39,18 +39,18 @@ const char *g_not_eq 		= "!=";
 
 const char *get_key_type(const char *literal) {
 	if (strcmp(literal, "let") == 0)
-		return g_let;
+		return (g_let);
 	else if (strcmp(literal, "fn") == 0)
-		return g_function;
+		return (g_function);
 	else if (strcmp(literal, "true") == 0)
-		return g_true;
+		return (g_true);
 	else if (strcmp(literal, "false") == 0)
-		return g_false;
+		return (g_false);
 	else if (strcmp(literal, "if") == 0)
-		return g_if;
+		return (g_if);
 	else if (strcmp(literal, "else") == 0)
-		return g_else;
-	return g_return;
+		return (g_else);
+	return (g_return);
 }
 
 const char *lookup_ident(const char *literal)
@@ -63,7 +63,7 @@ const char *lookup_ident(const char *literal)
 	while (i < len)
 	{
 		if (strcmp(literal, keys[i]) == 0)
-			return get_key_type(literal);
+			return (get_key_type(literal));
 		i++;
 	}
 	return (g_ident);
