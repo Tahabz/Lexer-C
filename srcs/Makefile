@@ -12,7 +12,7 @@ all : lib $(NAME)
 $(NAME): $(SRCS)
 	gcc -o $(NAME) $(FLAGS) $(SRCS) $(LIBS) -I $(INCLUDES)
 
-lib: $(LIBS)
+lib:
 	cd libft; make
 
 clean:
@@ -20,6 +20,6 @@ clean:
 
 fclean: clean
 	rm -rf lexer
-	cd libft: make fclean
+	cd libft; make fclean
 
 re: fclean all
