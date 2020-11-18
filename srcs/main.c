@@ -12,19 +12,18 @@ int		main(void)
 	ft_putstr_fd(prompt, 0);
 	while (get_next_line(0, &line) != 0)
 	{
-		l = new(line);
+		if (strcmp(line, "exit") == 0)
+			break ;
 		t_token tok;
-		while (line[i])
+		l = new(line);
+		while (1)
 		{
 			tok = next_token(&l);
 			if (strcmp(tok.type, "EOF") == 0)
 				break ;
 			printf("Token Type: {%s}\nToken Literal: {%s}\n", tok.type, tok.literal);
-			fflush(stdin);
 			i++;
 		}
-		if (strcmp(line, "exit") == 0)
-			break ;
 		ft_putstr_fd(prompt, 0);
 		free(line);
 	}
