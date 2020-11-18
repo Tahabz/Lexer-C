@@ -8,12 +8,23 @@ t_lexer		new(const char *input)
 	l.input = input;
 	l.read_position = 0;
 	l.position = 0;
-	l.read_char = &read_char;
 	l.skip_white_spaces = &skip_white_spaces;
 	l.peak_char = &peak_char;
 	l.read_identifier = &read_identifier;
+	l.read_number = &read_number;
+	l.read_char = &read_char;
 	l.read_char(&l);
 	return (l);
+}
+
+char						*read_number(t_lexer *lexer)
+{
+	unsigned int position;
+
+	position = lexer->position;
+	while (ft_isdigit(lexer->ch))
+		lexer->read_char(lexer);
+	return (ft_substr(lexer->input, position, lexer->position - position));
 }
 
 char						*read_identifier(struct s_lexer *lexer)
@@ -100,8 +111,13 @@ t_token		next_token(t_lexer *lexer)
 			tok.type = lookup_ident(tok.literal);
 			return (tok);
 		}
-		else
-			tok = new_token(g_illegal, "");
+		else if (ft_isdigit(lexer->ch))
+		{
+			tok.literal = l.read_number(lexer);
+			tok.type = g_int;
+			return (tok);
+		}
+		tok = new_token(g_illegal, "");
 	}
 	l.read_char(lexer);
 	return (tok);

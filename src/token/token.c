@@ -60,12 +60,12 @@ const char *lookup_ident(const char *literal)
 	int						i;
 
 	i = 0;
-	len = ft_strlen(literal);
+	len = sizeof(keys) / sizeof(*keys);
 	while (i < len)
 	{
 		if (strcmp(literal, keys[i]) == 0)
 			return get_key_type(literal);
 		i++;
 	}
-	return (literal);
+	return (g_ident);
 }
