@@ -5,6 +5,7 @@ LIBS = ../libs/libft.a
 SRCS = 	lexer.c \
 		lexer_tests.c \
 		token/token.c \
+		get_next_line/*
 
 all : lib $(NAME)
 	@echo "Building up the lexer.."
