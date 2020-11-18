@@ -1,6 +1,6 @@
 #include "globals.h"
 #include "lexer.h"
-#include "libft.h"
+
 int			main(void)
 {
 	int ok = 0;

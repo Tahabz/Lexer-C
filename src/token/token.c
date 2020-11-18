@@ -1,5 +1,4 @@
-#include "string.h"
-#include "libft.h"
+#include "globals.h"
 
 const char *keys[]			= {
 	"let",
