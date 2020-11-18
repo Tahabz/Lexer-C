@@ -1,9 +1,9 @@
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 INCLUDES = ../includes
 NAME = lexer
 LIBS = ../libs/libft.a
 SRCS = 	lexer.c \
-		lexer_tests.c \
+		main.c \
 		token/token.c \
 		get_next_line/*
 
