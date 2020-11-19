@@ -21,7 +21,7 @@ int		main(void)
 			tok = next_token(&l);
 			if (strcmp(tok.type, "EOF") == 0)
 				break ;
-			printf("Token Type: {%s}\nToken Literal: {%s}\n", tok.type, tok.literal);
+			printf("Token Type: {%s}\t\r\t\t\t Token Literal: {%s}\n", tok.type, tok.literal);
 			i++;
 		}
 		ft_putstr_fd(prompt, 0);
