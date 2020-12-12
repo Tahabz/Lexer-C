@@ -15,10 +15,10 @@ int		main(void)
 		if (strcmp(line, "exit") == 0)
 			break ;
 		t_token tok;
-		l = new(line);
+		t_lexer lexer = new_lexer(line);
 		while (1)
 		{
-			tok = next_token(&l);
+			tok = lexer.next_token(&lexer);
 			if (strcmp(tok.type, "EOF") == 0)
 				break ;
 			printf("Token Type: {%s}\t\r\t\t\t Token Literal: {%s}\n", tok.type, tok.literal);

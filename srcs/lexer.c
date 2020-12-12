@@ -2,7 +2,7 @@
 #include "lexer.h"
 #include "libft.h"
 
-t_lexer		new(const char *input)
+t_lexer		new_lexer(const char *input)
 {
 	t_lexer l;
 	l.input = input;
@@ -13,6 +13,7 @@ t_lexer		new(const char *input)
 	l.read_identifier = &read_identifier;
 	l.read_number = &read_number;
 	l.read_char = &read_char;
+	l.next_token = &next_token;
 	l.read_char(&l);
 	return (l);
 }
@@ -107,19 +108,19 @@ t_token		next_token(t_lexer *lexer)
 	{
 		if (ft_isalpha(lexer->ch))
 		{
-			tok.literal = l.read_identifier(lexer);
+			tok.literal = lexer->read_identifier(lexer);
 			tok.type = lookup_ident(tok.literal);
 			return (tok);
 		}
 		else if (ft_isdigit(lexer->ch))
 		{
-			tok.literal = l.read_number(lexer);
+			tok.literal = lexer->read_number(lexer);
 			tok.type = g_int;
 			return (tok);
 		}
 		tok = new_token(g_illegal, "");
 	}
-	l.read_char(lexer);
+	lexer->read_char(lexer);
 	return (tok);
 }
 
@@ -133,6 +134,6 @@ t_token		new_token(const char *type, const char *literal)
 
 void			skip_white_spaces(t_lexer *lexer)
 {
-	while (l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '\r')
-		l.read_char(lexer);
+	while (lexer->ch == ' ' || lexer->ch == '\t' || lexer->ch == '\n' || lexer->ch == '\r')
+		lexer->read_char(lexer);
 }
